@@ -1,0 +1,19 @@
+<div class="wrapper">
+    <div class="sidebar">
+        <img src="../assets/pixlr-bg-result.png">
+        <h2>MUSIC PRO VENDEDOR</h2>
+        
+        <ul>
+            <li><a routerLink="/seller-page/home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a routerLink="/seller-page/profile"><i class="fas fa-user"></i> Perfil</a></li>
+            <li><a routerLink="/seller-page/products"><i class="fas fa-dollar-sign"></i> Añadir Productos</a></li>
+            <li><a routerLink="/seller-page/sells"><i class="fas fa-box"></i> Ventas</a></li>
+            <li><a routerLink="/sign-page" (click)="logout()"><i class="fas fa-power-off"></i> Cerrar sesion como VENDEDOR</a></li>
+        </ul>
+
+
+    </div>
+    <div class="main_content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

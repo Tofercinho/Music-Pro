@@ -1,0 +1,63 @@
+<div class="header"> Agregar Productos </div>
+
+
+<mat-paginator [length]="products?.length" [pageSize]="9">
+
+</mat-paginator>
+
+<div class="sort-and-button">
+    <button mat-fab class="add-button" (click)="openSaveDialog()" #tooltip="matTooltip" matTooltip="Add a new product">
+        <i class="fas fa-plus"></i>
+    </button>
+
+
+    <mat-form-field class="container " *ngIf="!isLoading">
+        <mat-label>Sort</mat-label>
+        <mat-select [(value)]="selectedValue" (selectionChange)="selectOrder()">
+            <mat-option value="price">Precio</mat-option>
+            <mat-option value="name">Name</mat-option>
+            <mat-option value="unsold">Unsold</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</div>
+
+
+<div class="cards" *ngIf="!isLoading">
+
+    <div class="products" *ngFor="let product of products">
+
+        <div class="name">{{product.name}}</div>
+
+        <div class="price">R${{product.price}}</div>
+
+        <mat-divider></mat-divider>
+
+        <div class="same-row">
+
+
+
+            <div class="seller">
+
+                <div class="owner">OWNER</div>
+                <div class="owner-name">{{product.productOwner.name}}</div>
+
+            </div>
+
+            <div class="description">
+                <div class="owner">DESCRIPTION</div>
+                <div class="owner-name">{{product.description}}</div>
+
+
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button [disabled]="product.hasBeenSold === 'Sold'" mat-button (click)="openEditDialog(product)"> <i class="fas fa-edit"></i> EDIT</button>
+            <button [disabled]="product.hasBeenSold === 'Sold'" mat-button (click)="openRemoveDialog(product)"> <i class="fas fa-times"></i> REMOVE</button>
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,22 @@
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Music Pro </h2>
+        
+        <ul>
+            <li><a routerLink="/client-page/home" routerLinkActive="active"><i class="fas fa-home" ></i> Home</a></li>
+            <li><a routerLink="/client-page/profile"><i class="fas fa-user"></i> Perfil de usuario </a></li>
+            <li><a routerLink="/client-page/products" routerLinkActive="active"><i class="fas fa-dollar-sign"></i> Productos</a></li>
+            <li><a routerLink="/client-page/wishlist" routerLinkActive="active"><i class="fas fa-heart"></i> Lista Blanca</a></li>
+            <li><a routerLink="/client-page/orders"><i class="fas fa-box"></i> Orden de venta</a></li>
+            <li><a routerLink="/sign-page" (click)="logout()"><i class="fas fa-power-off"></i> Cerrar sesion</a></li>
+            
+        </ul>
+
+
+    </div>
+    <div class="main_content">
+        <router-outlet></router-outlet>
+        
+    </div>
+    
+</div>

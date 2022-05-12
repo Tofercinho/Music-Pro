@@ -1,0 +1,107 @@
+<div class="body">
+
+    <div class="container-box">
+
+        <!-- image -->
+        <div class="container-image">
+
+            <img src="../assets/pixlr-bg-result.png">
+
+        </div>
+
+
+        <!-- form -->
+
+        <mat-tab-group mat-align-tabs="center" class=container-form>
+            <mat-tab label="Sign up" class="tab-group">
+
+
+
+
+                <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+
+                    <mat-form-field appearance="fill" class="input">
+                        <mat-label>Nombre Completo</mat-label>
+                        <input matInput formControlName="name" required>
+                    </mat-form-field>
+                    <br>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Correo electronico</mat-label>
+                        <input matInput type="email" formControlName="email" required ngModel [email]="true">
+                    </mat-form-field>
+                    <br>
+
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Crea tu contraseña</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+                    </mat-form-field>
+
+                    <br>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Tipo de Usuario</mat-label>
+                        <mat-select [(value)]="selectedValue">
+                            <mat-option value="client">Cliente</mat-option>
+                            <mat-option value="seller">Vendedor</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+
+                    <div class="buttons" *ngIf="!isLoading">
+
+
+                        <button (click)="clearFieldsSignUp()" class="button-clear" type="button" mat-button>Limpiar Campos</button>
+                        <button type="submit" mat-raised-button [disabled]="!signUpForm.valid" class="button-save">Crear</button>
+                    </div>
+
+
+
+                </form>
+                <div class="uploader-status">
+                    <mat-spinner *ngIf="isLoading"></mat-spinner>
+                </div>
+
+            </mat-tab>
+            <mat-tab label="Login">
+
+
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="email" required ngModel [email]="true">
+                    </mat-form-field>
+                    <br>
+
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" required>
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+                    </mat-form-field>
+
+
+
+                    <div *ngIf="!isLoading">
+
+                        <button mat-button color="warn" [disabled]="!loginForm.valid && loginForm.pristine" (click)="forgotPassword()" #tooltip="matTooltip" matTooltip="Just fill out the email field and click here to send a new password to your email">Forgot your password?</button>
+                        <button mat-raised-button class="button-save" [disabled]="!loginForm.valid && loginForm.pristine">Save</button>
+
+                    </div>
+                </form>
+
+                <div *ngIf="isLoading" class="uploader-status">
+                    <mat-spinner></mat-spinner>
+                </div>
+
+
+            </mat-tab>
+        </mat-tab-group>
